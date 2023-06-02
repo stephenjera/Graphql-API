@@ -1,7 +1,9 @@
+import sys
 from fastapi import FastAPI
 
 app = FastAPI()
 
 @app.get("/")
 async def root():
-    return {"message": "Hello, World!"}
+    python_version = sys.version
+    return {"message": f"Hello, World! Running on Python {python_version}"}
