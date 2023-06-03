@@ -1,41 +1,17 @@
-from google.cloud import bigquery
-#import time
-from sqlalchemy.exc import OperationalError
-from src.models import Clubs, GroupName, Players
-from sqlmodel import SQLModel, create_engine, Session
+from src.models import Clubs, Cards, Colours, GroupName, Venues, Players, Matches, Goals
+from sqlmodel import create_engine, Session
 from sqlmodel import Session, select
-
-# Create a BigQuery client
-#client = bigquery.Client()
 
 PROJECT_ID = "graphql-land"
 DATASET_ID = "football"
 
 # Set the path to your JSON key file
-#JSON_KEY_FILE = "../keyfile.json"
+# JSON_KEY_FILE = "keyfile.json"
 
 # Create an engine and connect to BigQuery
-#engine = create_engine(f'bigquery://{PROJECT_ID}', credentials_path=JSON_KEY_FILE)
+#engine = create_engine(f"bigquery://{PROJECT_ID}", credentials_path=JSON_KEY_FILE)
 engine = create_engine(f'bigquery://{PROJECT_ID}')
 
-# @app.get("/")
-# async def root():
-#     # Define the BigQuery table name
-#     TABLE_NAME = f"{PROJECT_ID}.{DATASET_ID}.matches"
-
-#     # Query example
-#     query = f"""
-#      SELECT *
-#      FROM `{TABLE_NAME}`
-#     """
-#     query_job = client.query(query)
-
-#     # Iterate over the query results
-#     result = []
-#     for row in query_job:
-#         result.append(dict(row))
-
-#     return result
 
 def get_club(club_id: int) -> Clubs:
     with Session(engine) as session:
@@ -49,16 +25,29 @@ def get_group(group_id: int) -> GroupName:
     return group
 
 
-# def get_venue(venue_id: int) -> Venues:
-#     with Session(engine) as session:
-#         venue = session.get(Venues, venue_id)
-#     return venue
+def get_venue(venue_id: int) -> Venues:
+    with Session(engine) as session:
+        venue = session.get(Venues, venue_id)
+    return venue
 
 
 def get_player(player_id: int) -> Players:
     with Session(engine) as session:
         player = session.get(Players, player_id)
     return player
+
+
+def get_match(match_id: int) -> Matches:
+    with Session(engine) as session:
+        match = session.get(Matches, match_id)
+    return match
+
+
+def get_colour(colour_id: int) -> Colours:
+    with Session(engine) as session:
+        colour = session.get(Colours, colour_id)
+    return colour
+
 
 def get_all_groups() -> list[GroupName]:
     with Session(engine) as session:
@@ -76,3 +65,21 @@ def get_all_players() -> list[Players]:
     with Session(engine) as session:
         players = session.exec(select(Players)).all()
     return players
+
+
+def get_all_matches() -> list[Matches]:
+    with Session(engine) as session:
+        matches = session.exec(select(Matches)).all()
+    return matches
+
+
+def get_all_cards() -> list[Cards]:
+    with Session(engine) as session:
+        cards = session.exec(select(Cards)).all()
+    return cards
+
+
+def get_all_goals() -> list[Goals]:
+    with Session(engine) as session:
+        goals = session.exec(select(Goals)).all()
+    return goals
