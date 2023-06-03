@@ -6,7 +6,7 @@ from sqlmodel import SQLModel, create_engine, Session
 from sqlmodel import Session, select
 
 # Create a BigQuery client
-client = bigquery.Client()
+#client = bigquery.Client()
 
 PROJECT_ID = "graphql-land"
 DATASET_ID = "football"

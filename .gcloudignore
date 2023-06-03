@@ -14,6 +14,7 @@
 .gitignore
 Pipfile
 Pipfile.lock
+SQL
 
 # Python pycache:
 __pycache__/
