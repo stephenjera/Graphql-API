@@ -1,5 +1,5 @@
 import strawberry
-import database as db
+import src.database as db
 from datetime import datetime
 
 

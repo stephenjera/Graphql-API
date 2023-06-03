@@ -1,7 +1,7 @@
 from google.cloud import bigquery
 #import time
 from sqlalchemy.exc import OperationalError
-from models import Clubs, GroupName, Players
+from src.models import Clubs, GroupName, Players
 from sqlmodel import SQLModel, create_engine, Session
 from sqlmodel import Session, select
 
