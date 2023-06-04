@@ -55,7 +55,7 @@ class MatchesType:
     away_score: int | None
     home_team: ClubsType
     away_team: ClubsType
-    venue: VenuesType
+    venue: VenuesType | None
 
     @strawberry.field
     def home_team(self, info) -> ClubsType:
