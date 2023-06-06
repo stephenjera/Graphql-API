@@ -7,7 +7,9 @@ app = FastAPI()
 app.include_router(GraphQLRouter(schema=schema, path="/graphql"))
 
 origins = [
-    "https://super-portfolio-lyart.vercel.app/"
+    "https://super-portfolio-lyart.vercel.app",
+    "https://super-portfolio-git-master-stephenjera.vercel.app",
+    "https://super-portfolio-stephenjera.vercel.app",
 ]
 
 app.add_middleware(
